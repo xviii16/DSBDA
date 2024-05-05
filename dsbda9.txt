@@ -1,0 +1,36 @@
+import pandas as pd
+import numpy as np
+%matplotlib inline
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sp= sns.load_dataset("titanic")
+
+sp.head()
+
+sns.countplot(sp['survived'])
+plt.show()
+
+sp['sex'].value_counts().plot(kind='pie', autopct="%.2f")
+
+sp=  sp.dropna()
+
+plt.hist(sp['age'])
+plt.show()
+
+sns.distplot(sp['age'])
+plt.show()
+
+sns.scatterplot(sp["age"], sp["fare"], hue=sp["sex"])
+
+sns.barplot(sp["pclass"], sp['age'] )
+
+sns.barplot(sp["pclass"], sp['age'], hue=sp["sex"] )
+
+sns.boxplot(sp["pclass"], sp["age"])
+
+sns.boxplot(sp["pclass"], sp['age'], hue=sp["sex"])
+
+pd.crosstab(sp["pclass"], sp["age"])
+
+sns.heatmap(pd.crosstab(sp["pclass"], sp["age"]))

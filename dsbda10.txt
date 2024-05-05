@@ -1,0 +1,27 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sp=pd.read_csv("IRIS1.csv")
+
+sp
+
+sp.mean()
+
+sp.median()
+
+sp.mode()
+
+sp.std()
+
+sp.min()
+
+sp.max()
+
+sp.var()
+
+plt.hist(sp['sepal_length'])
+plt.show()
+
+sp.boxplot()

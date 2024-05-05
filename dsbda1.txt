@@ -1,0 +1,31 @@
+import numpy as np
+import seaborn as se
+import pandas as pd
+import matplotlib.pyplot as plt
+
+sp=pd.read_csv("weatherAUS.csv")
+
+sp.head(5)
+
+sp.tail(5)
+
+sp.index
+
+sp.shape
+
+sp.dtypes
+
+sp.columns.values
+
+sp.describe(include= 'all')
+
+sp['MinTemp']
+
+sp.sort_index(axis =1)
+
+sp.iloc[3]
+
+sp[0:3]
+
+sp.loc[:,['Date','Location']]
+

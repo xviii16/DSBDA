@@ -1,0 +1,30 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+sp= pd.read_csv("Boston.csv")
+
+sp.head(9)
+
+sp.isnull().sum()
+
+from sklearn.model_selection import train_test_split
+xtrain, xtest, ytrain, ytest = train_test_split(x,y, test_size = 0.2)
+
+import sklearn
+from sklearn.linear_model import LinearRegression
+im = LinearRegression()
+model=im.fit(xtrain, ytrain)
+
+
+ytrain_pred = im.predict(xtrain)
+ytest_pred = im.predict(xtest)
+
+plt.scatter(ytrain ,ytrain_pred,c='blue',marker='o',label='Training data')
+plt.scatter(ytest,ytest_pred ,c='lightgreen',marker='s',label='Test data')
+plt.xlabel('True values')
+plt.ylabel('Predicted')
+plt.title("True value vs Predicted value")
+plt.legend(loc= 'lower right')
+plt.plot()
+plt.show()

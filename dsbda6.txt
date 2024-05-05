@@ -1,0 +1,46 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from sklearn.model_selection import train_test_split
+
+sp=pd.read_csv("iris.csv")
+
+sp.head()
+
+sp.isnull().any()
+
+xtrain, xtest, ytrain, ytest = train_test_split(x,y,test_size=0.2, random_state=0)
+
+from sklearn.preprocessing import StandardScaler
+scaler = StandardScaler()
+scaler.fit(xtrain)
+xtrain =scaler.fit_transform(xtrain)
+xtest= scaler.fit_transform(xtest)
+
+from sklearn.naive_bayes import GaussianNB
+gaussian =GaussianNB()
+gaussian.fit(xtrain, ytrain)
+
+y_pred=gaussian.predict(xtest)
+y_pred
+
+from sklearn.metrics import precision_score, confusion_matrix,accuracy_score, recall_score
+cm= confusion_matrix(ytest, y_pred)
+
+accuracy = accuracy_score(ytest, y_pred)
+precision = precision_score(ytest, y_pred, average='micro')
+recall = recall_score(ytest, y_pred, average='micro')
+
+print(accuracy)
+print(precision)
+print(recall)
+print(cm)
+
+
+
+
+
+
+
+

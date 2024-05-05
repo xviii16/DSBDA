@@ -1,0 +1,44 @@
+import pandas as pd
+import numpy as np
+%matplotlib inline
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+sp = sns.load_dataset("titanic")
+
+sp.head()
+
+plt.show()
+sns.distplot(dataset["fare"])
+
+sns.distplot(dataset['fare'], kde=False, bins=10)
+
+sns.jointplot(x ='age', y='fare', data=sp)
+
+sns.jointplot(x ='age', y='fare', data=sp, kind='hex')
+
+sp= sp.dropna()
+
+sns.pairplot(sp)
+
+sns.rugplot(dataset['fare'])
+
+sns.barplot(x='sex', y='age', data=sp)
+
+sns.countplot(x='sex',  data=sp)
+
+sns.boxplot(x='sex', y='age', data=sp)
+
+sns.violinplot(x='sex', y='age', data=sp)
+
+sns.violinplot(x='sex', y='age', data=sp, hue='survived')
+
+sns.stripplot(x='sex', y='age', data=sp, hue='survived')
+
+sns.swarmplot(x='sex', y='age', data=sp, hue='survived', split='True')
+
+sns.violinplot(x='sex', y='age', data=sp)
+sns.swarmplot(x='sex', y='age', data=sp,  color='black')
+
+
+
