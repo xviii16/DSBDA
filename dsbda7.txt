@@ -1,0 +1,102 @@
+
+import pandas as pd
+import nltk
+import re
+from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
+from nltk.corpus import stopwords
+from nltk.stem import PorterStemmer
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+
+nltk.download('punkt')
+nltk.download('stopwords')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+
+text="Tokenization is the first step in text analytics."
+
+tokenized_text=sent_tokenize(text)
+print(tokenized_text)
+tokenized_word=word_tokenize(text)
+print(tokenized_word)
+
+stop_words=set(stopwords.words("english"))
+print(stop_words)
+text="How to remove stop words with NLTK library in Python?"
+text=re.sub('[^a-zA-Z]',' ',text)
+tokens=word_tokenize(text.lower())
+filtered_text=[]
+for w in tokens:
+ if w not in stop_words:
+ filtered_text.append(w)
+print("Tokenized Sentence:",tokens)
+print("Filtered Sentence:",filtered_text)
+
+e_words=["wait","waiting","waited","waits"]
+ps=PorterStemmer()
+for w in e_words:
+ rootWord=ps.stem(w)
+print(rootWord)
+
+wordnet_lemmatizer=WordNetLemmatizer()
+text="studies studying cries cry"
+tokenization=nltk.word_tokenize(text)
+for w in tokenization:
+ print("Lemma for {} is {}".format(w,wordnet_lemmatizer.lemmatize(w)))
+
+data="The pink sweater fit her perfectly"
+words=word_tokenize(data)
+for word in words:
+ print(nltk.pos_tag([word]))
+
+import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
+import math
+
+
+documentA='Jupiter is the largest Planet'
+documentB='Mars is the fourth planet from the Sun'
+bagOfWordsA=documentA.split(' ')
+bagOfWordsB=documentB.split(' ')
+uniqueWords=set(bagOfWordsA).union(set(bagOfWordsB))
+numOfWordsA=dict.fromkeys(uniqueWords,0)
+for word in bagOfWordsA:
+ numOfWordsA[word]+=1
+ numOfWordsB=dict.fromkeys(uniqueWords,0)  
+ 
+for word in bagOfWordsB:
+ numOfWordsB[word]+=1
+
+def computeTF(wordDict,bagOfWords):
+ tfDict={}
+ bagOfWordsCount = len(bagOfWords)
+ for word, count in wordDict.items():
+ tfDict[word] = count / float(bagOfWordsCount)
+ return tfDict
+tfA = computeTF(numOfWordsA, bagOfWordsA)
+tfB = computeTF(numOfWordsB, bagOfWordsB
+
+def computeIDF(documents):
+ N = len(documents)
+ idfDict = dict.fromkeys(documents[0].keys(), 0)
+ for document in documents:
+ for word, val in document.items():
+ if val > 0:
+ idfDict[word] += 1
+ for word, val in idfDict.items():
+ idfDict[word] = math.log(N / float(val))
+ return idfDict
+idfs = computeIDF([numOfWordsA, numOfWordsB])
+idfs
+
+def computeTFIDF(tfBagOfWords, idfs):
+ tfidf = {}
+ for word, val in tfBagOfWords.items():
+ tfidf[word] = val * idfs[word]
+ return tfidf
+tfidfA = computeTFIDF(tfA, idfs)
+tfidfB = computeTFIDF(tfB, idfs)
+df = pd.DataFrame([tfidfA, tfidfB])
+
+df
